@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml; charset=utf-8"/>
+  </head>
+  <body>
+    <p id="define">Paragraph.</p>
+    <script type="text/javascript">
+      console.log("initially:", window.define, define);
+    </script>
+    <script type="text/javascript">
+      var define;
+      console.log("start of redefine:", window.define, define);
+      define = 1;
+      console.log("end of redefine:", window.define, define);
+    </script>
+    <script type="text/javascript">
+      console.log("finally:", window.define, define);
+    </script>
+  </body>
+</html>

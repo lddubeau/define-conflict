@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml; charset=utf-8"/>
+  </head>
+  <body>
+    <p id="define">Paragraph.</p>
+    <button id="redefine">Redefine</button>
+    <script type="text/javascript">
+      console.log("before requirejs:", typeof window.define, typeof define);
+    </script>
+    <script>
+      require = {
+          baseUrl: "./js",
+          paths: {
+              jquery: 'jquery-1.10.2'
+          },
+      };
+    </script>
+    <script type="text/javascript" src="js/require.js"></script>
+    <script>
+      console.log("requirejs loaded:", typeof window.define, typeof define);
+      require(["jquery"], function ($) {
+          $("#redefine").click(function () {
+              $("#define").replaceWith("<p id='define'>New paragraph.</p>");
+              console.log("redefined:", typeof window.define, typeof define);
+              require(["foo"], function (foo) {
+                  console.log(foo);
+              });
+          });
+      });
+    </script>
+  </body>
+</html>
